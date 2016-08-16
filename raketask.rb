@@ -43,8 +43,8 @@ task :controller do
   end
 
   put "/#{model}s/:id" do
-    #{model} = #{model.capitalize}.find(params[:id])
-    if #{model}.update(params[:#{model}])
+    @#{model} = #{model.capitalize}.find(params[:id])
+    if @#{model}.update(params[:#{model}])
       redirect "/#{model}s/params[:id]"
     else
       @errors = #{model}.errors.full_messages
