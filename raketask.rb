@@ -47,7 +47,7 @@ task :controller do
     if @#{model}.update(params[:#{model}])
       redirect "/#{model}s/params[:id]"
     else
-      @errors = #{model}.errors.full_messages
+      @errors = @#{model}.errors.full_messages
       erb :"#{model}s/edit"
     end
   end
