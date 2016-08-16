@@ -53,8 +53,8 @@ task :controller do
   end
 
   delete "/#{model}s/:id" do
-    @#{model} = #{model.capitalize}.find(params[:id])
-    @#{model}.destroy
+    #{model} = #{model.capitalize}.find(params[:id])
+    #{model}.destroy
     redirect "/#{model}s/index"
   end
   ROUTER
