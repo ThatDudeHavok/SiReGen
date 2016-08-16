@@ -19,15 +19,15 @@ task :controller do
   end
 
   post "/#{model}s" do
-    @#{model} = #{model.capitalize}.new(params[:#{model}])
-    if @#{model}.save
+    #{model} = #{model.capitalize}.new(params[:#{model}])
+    if #{model}.save
       if request.xhr?
-        @#{model}
+        #{model}
       else
         redirect "/#{model}s"
       end
     else
-      @errors = @#{model}.errors.full_messages
+      @errors = #{model}.errors.full_messages
       erb :"#{model}s/new"
     end
   end
@@ -43,9 +43,13 @@ task :controller do
   end
 
   put "/#{model}s/:id" do
-    @#{model} = #{model.capitalize}.find(params[:id])
-    @#{model}.update(params[:#{model}])
-    redirect "/#{model}s/params[:id]"
+    #{model} = #{model.capitalize}.find(params[:id])
+    if #{model}.update(params[:#{model}])
+      redirect "/#{model}s/params[:id]"
+    else
+      @errors = #{model}.errors.full_messages
+      erb :"#{model}s/edit"
+    end
   end
 
   delete "/#{model}s/:id" do
